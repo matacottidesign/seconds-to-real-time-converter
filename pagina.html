@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="author" content="Francesco Matacotti" />
+    <title>Second To Real Time Converter</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../converter/style.css">
+</head>
+
+<body>
+
+    <div class="card text-center">
+      <div class="card-header">
+        Second to Real Time Converter
+      </div>
+      <div class="card-body">
+        <b><p id="date"></p></b>
+        <p class="card-text help">Refresh the page (or F5) to convert a new number from second to real time <br> Made by <a href="#">Matacotti Design</a></p>
+      </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+        let num = prompt('Write a number. Don\'t use space or token. | N°max: 31104000');
+
+        function minutes() {
+            if (num > 0) {
+                document.getElementById("date").innerHTML = ((Math.floor(num / 60)) + ' minutes / ' + (num % 60) + ' seconds');
+            }
+        }
+
+        function hours() {
+            if (num > 0) {
+                document.getElementById("date").innerHTML = ((Math.floor(num / 3600)) + ' hours / ' + (Math.floor(num / 60) % 60 /*minutes*/) + ' minutes / ' + (num % 60) + ' seconds');
+            }
+        }
+
+        function days() {
+            if (num > 0) {
+                document.getElementById("date").innerHTML = ((Math.floor(num / 86400)) + ' days / ' + (Math.floor((num / 3600) % 24 /*hours*/) % 60 /*minutes*/) + ' hours / ' + (Math.floor(num / 60) % 60) + ' minutes / ' + (num % 60) + ' seconds');
+            }
+        }
+
+        function months() {
+            if (num > 0) {
+                document.getElementById("date").innerHTML = ((Math.floor(num / 2592000)) + ' months / ' + (Math.floor(((num / 86400) % 30) % 60) % 60) + ' days / ' + (Math.floor((num / 3600) % 24 /*hours*/) % 60 /*minutes*/) + ' hours / ' + (Math.floor(num / 60) % 60) + ' minutes / ' + (num % 60) + ' seconds');
+            }
+        }
+
+        
+    if (num <= 59) {
+    document.getElementById("date").innerHTML = (num + ' seconds');
+    } else if (num <= 3599) {
+        minutes();
+    } else if (num <= 86399){
+        hours();
+    } else if (num <= 2591999){
+        days();
+    } else if (num <= 31103999){
+        months();
+    } else if (num == 31104000){
+        document.getElementById("date").innerHTML = ('1 year / 0 months / 0 days / 0 hours / 0 minutes / 0 seconds');
+    }
+
+    </script>
+</body>
+
+</html>
